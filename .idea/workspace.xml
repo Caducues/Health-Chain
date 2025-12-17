@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbb87d7c-3c85-4f15-8271-1cb9d70505a7" name="Changes" comment="Projenin Database Bağlantısı Yapıldı">
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register_patient.html" afterDir="false" />
+    <list default="true" id="cbb87d7c-3c85-4f15-8271-1cb9d70505a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/main_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/main_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/patient_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/patient_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_doctor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_doctor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,46 +22,53 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Caducues"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Caducues&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Caducues/Health-Chain",
-    "accountId": "1da0f767-57a3-425f-bec5-2bc801556ddf"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Caducues/Health-Chain&quot;,
+    &quot;accountId&quot;: &quot;1da0f767-57a3-425f-bec5-2bc801556ddf&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="36xMgWfCl77OCPvp8VY4rvDAByl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.app.executor": "Run",
-    "Python.db_config.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.db_config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_routes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.patient_routes.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\HealthChain" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -88,11 +100,20 @@
       <option name="project" value="LOCAL" />
       <updated>1765944773231</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="blockchain yapısı kuruldu. blockchain doğrulama sistemi, hasta kaydı , doktor kaydı , randevu fonksiyonları eklendi">
+      <option name="closed" value="true" />
+      <created>1765946925733</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765946925733</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Projenin Database Bağlantısı Yapıldı" />
-    <option name="LAST_COMMIT_MESSAGE" value="Projenin Database Bağlantısı Yapıldı" />
+    <MESSAGE value="blockchain yapısı kuruldu. blockchain doğrulama sistemi, hasta kaydı , doktor kaydı , randevu fonksiyonları eklendi" />
+    <option name="LAST_COMMIT_MESSAGE" value="blockchain yapısı kuruldu. blockchain doğrulama sistemi, hasta kaydı , doktor kaydı , randevu fonksiyonları eklendi" />
   </component>
 </project>

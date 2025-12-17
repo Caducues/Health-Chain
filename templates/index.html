@@ -9,6 +9,38 @@
     </style>
 </head>
 <body class="container py-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="{{ url_for('main.index') }}">
+            🏥 HealthChain
+        </a>
+
+        <div class="d-flex align-items-center">
+            {% if current_user.is_authenticated %}
+                <span class="me-3 text-secondary">
+                    Merhaba, <strong>Dr. {{ current_user.name }} {{ current_user.surname }}</strong>
+                </span>
+
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm">
+                    🚪 Çıkış Yap
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+
+<div class="card mb-4 shadow-sm border-0">
+    <div class="card-body">
+        <form action="{{ url_for('main.index') }}" method="GET" class="d-flex">
+            <input class="form-control me-2 form-control-lg" type="search" name="q" placeholder="Hasta Adı, Soyadı veya TC Kimlik No ile ara..." aria-label="Search">
+            <button class="btn btn-primary btn-lg px-4" type="submit">🔍 Ara</button>
+            {% if request.args.get('q') %}
+                <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary ms-2 align-self-center">Temizle</a>
+            {% endif %}
+        </form>
+    </div>
+</div>
     <h1 class="mb-4">🏥 Hastane Blockchain Kayıtları</h1>
 
    <div class="mb-4">
@@ -26,21 +58,35 @@
     {% endwith %}
 
     <div class="list-group">
-        {% for record in records %}
-        <div class="list-group-item block-card shadow-sm">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{ record[0] }} {{ record[1] }}</h5>
-                <small class="text-muted">{{ record[5] }}</small>
+    {% for record in records %}
+    <div class="list-group-item block-card shadow-sm p-4">
+        <div class="d-flex w-100 justify-content-between align-items-center">
+            <div>
+                <h4 class="mb-1">
+                    <a href="{{ url_for('patient.patient_detail', patient_id=record[6]) }}" class="text-decoration-none text-primary fw-bold">
+                        {{ record[0] }} {{ record[1] }}
+                    </a>
+                </h4>
+                <span class="badge bg-secondary">TC: {{ record[7] }}</span>
             </div>
-            <p class="mb-1">
-                <strong>Veri:</strong> {{ record[2] }}
-            </p>
-            <div class="mt-2 p-2 bg-light rounded">
-                <div><small>🔗 Önceki Hash:</small> <span class="hash-text">{{ record[4] }}</span></div>
-                <div><small>🔒 Blok Hash:</small> <span class="hash-text">{{ record[3] }}</span></div>
-            </div>
+            <small class="text-muted">{{ record[5].strftime('%d.%m.%Y %H:%M') }}</small>
         </div>
-        {% endfor %}
+
+        <div class="mt-3">
+            <p class="mb-1 fs-5">{{ record[2]['diagnosis'] }}</p> <p class="text-muted">{{ record[2]['treatment'] }}</p>
+        </div>
+
+        <div class="mt-3 p-2 bg-light rounded border" style="font-size: 0.85rem;">
+            <div><small class="text-muted fw-bold">🔗 Önceki Hash:</small> <span class="hash-text ms-2">{{ record[4] }}</span></div>
+            <div><small class="text-muted fw-bold">🔒 Blok Hash:</small> <span class="hash-text ms-2">{{ record[3] }}</span></div>
+        </div>
     </div>
+    {% else %}
+        <div class="alert alert-info text-center py-4">
+            <h4>📭 Kayıt Bulunamadı</h4>
+            <p>Aradığınız kriterlere uygun hasta veya kayıt yok.</p>
+        </div>
+    {% endfor %}
+</div>
 </body>
 </html>
