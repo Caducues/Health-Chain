@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthChain - Geleceğin Sağlık Teknolojisi</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563EB',   /* Modern Medikal Mavi */
+                        secondary: '#1E40AF', /* Koyu Mavi */
+                        accent: '#10B981',    /* Güven Yeşili */
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Cam Efekti (Glassmorphism) */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: move 10s infinite alternate;
+        }
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(20px, -20px) scale(1.1); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 overflow-x-hidden relative">
+
+    <nav class="glass-nav fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-notes-medical"></i>
+                </div>
+                <span class="text-2xl font-bold text-dark tracking-tight">Health<span class="text-primary">Chain</span></span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+                <a href="#" class="hover:text-primary transition-colors">Ana Sayfa</a>
+                <a href="#hizmetler" class="hover:text-primary transition-colors">Hizmetler</a>
+                <a href="#doktorlar" class="hover:text-primary transition-colors">Doktorlarımız</a>
+                <a href="/verify" class="hover:text-primary transition-colors">Sistemi Denetle</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <div class="flex flex-col items-end text-sm mr-2">
+                    <span class="text-gray-400 text-xs">Acil Durum Hattı</span>
+                    <span class="font-bold text-red-500 animate-pulse"><i class="fa-solid fa-phone me-1"></i> 112</span>
+                </div>
+                <a href="{{ url_for('auth.login') }}" class="px-6 py-2.5 bg-primary hover:bg-secondary text-white rounded-full shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-1">
+                    Giriş Yap
+                </a>
+            </div>
+
+            <button class="md:hidden text-2xl text-dark">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-pattern">
+        <div class="blob bg-blue-300 w-96 h-96 rounded-full top-0 left-0"></div>
+        <div class="blob bg-purple-300 w-80 h-80 rounded-full bottom-0 right-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-semibold mb-6 shadow-sm">
+                        🚀 Blockchain Tabanlı Güvenli Sağlık Sistemi
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-bold text-dark leading-tight mb-6">
+                        Sağlığınız İçin <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">Güvenilir Teknoloji</span>
+                    </h1>
+                    <p class="text-lg text-gray-500 mb-8 leading-relaxed">
+                        Verileriniz değiştirilemez blockchain zincirinde güvende. Yapay zeka destekli teşhis ve şeffaf muayene süreçleri ile tanışın.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="/register_patient" class="px-8 py-4 bg-primary text-white rounded-xl shadow-xl shadow-blue-500/30 font-semibold hover:bg-secondary transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-user-plus"></i> Hasta Kaydı Oluştur
+                        </a>
+                        <a href="#hizmetler" class="px-8 py-4 bg-white text-dark border border-gray-200 rounded-xl shadow-lg hover:shadow-xl font-semibold transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> Doktor Bul
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex items-center justify-center lg:justify-start gap-8 text-dark">
+                        <div>
+                            <span class="block text-3xl font-bold text-primary">15k+</span>
+                            <span class="text-sm text-gray-500">Mutlu Hasta</span>
+                        </div>
+                        <div class="w-px h-10 bg-gray-300"></div>
+                        <div>
+                            <span class="block text-3xl font-bold text-primary">100%</span>
+                            <span class="text-sm text-gray-500">Veri Güvenliği</span>
+                        </div>
+                        <div class="w-px h-10 bg-gray-300"></div>
+                        <div>
+                            <span class="block text-3xl font-bold text-primary">24/7</span>
+                            <span class="text-sm text-gray-500">Acil Servis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 relative" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+                        <img src="https://images.unsplash.com/photo-1631217868264-e5b9099a583d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Doktorlar" class="w-full h-auto transform hover:scale-105 transition-transform duration-700">
+
+                        <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-dark">Blockchain Onaylı</p>
+                                <p class="text-xs text-gray-500">Verileriniz şifrelendi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 -mt-10 relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Randevu Al</h3>
+                    <p class="text-gray-500 mb-4">Uzman doktorlarımızdan size en uygun zamanda randevu oluşturun.</p>
+                    <a href="#" class="text-primary font-semibold hover:gap-2 transition-all flex items-center gap-1">Hemen Başla <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="bg-primary p-8 rounded-2xl shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-white transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl mb-6">
+                        <i class="fa-solid fa-file-medical-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tahlil Sonuçları</h3>
+                    <p class="text-blue-100 mb-4">Blockchain güvencesiyle saklanan laboratuvar sonuçlarınıza anında erişin.</p>
+                    <a href="/login" class="text-white font-semibold hover:gap-2 transition-all flex items-center gap-1">Giriş Yap <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Doktor Bul</h3>
+                    <p class="text-gray-500 mb-4">Hastanemizde görev yapan uzman doktorları branşlarına göre listeleyin.</p>
+                    <a href="#" class="text-green-600 font-semibold hover:gap-2 transition-all flex items-center gap-1">Listele <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hizmetler" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wide uppercase text-sm">Bölümlerimiz</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-dark mt-2">Uzmanlık Alanlarımız</h2>
+                <p class="text-gray-500 mt-4">En son teknoloji cihazlar ve alanında uzman kadromuzla sağlığınız için çalışıyoruz.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all group cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-red-50 text-red-500 rounded-lg flex items-center justify-center text-xl mb-4 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Kardiyoloji</h4>
+                    <p class="text-gray-400 text-sm">Kalp sağlığınız için gelişmiş tanı ve tedavi yöntemleri.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all group cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-lg flex items-center justify-center text-xl mb-4 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Nöroloji</h4>
+                    <p class="text-gray-400 text-sm">Sinir sistemi hastalıklarında uzman teşhis ve tedavi.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all group cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-green-50 text-green-500 rounded-lg flex items-center justify-center text-xl mb-4 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Genetik</h4>
+                    <p class="text-gray-400 text-sm">Kalıtsal hastalıkların tespiti için DNA analizleri.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all group cursor-pointer" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-lg flex items-center justify-center text-xl mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-baby"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Pediatri</h4>
+                    <p class="text-gray-400 text-sm">Çocuklarınızın sağlığı ve gelişimi emin ellerde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                            <i class="fa-solid fa-notes-medical"></i>
+                        </div>
+                        <span class="text-xl font-bold">HealthChain</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Geleceğin sağlık teknolojisi ile tanışın. Güvenli, şeffaf ve hızlı sağlık hizmetleri sunuyoruz.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Hızlı Erişim</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors">Ana Sayfa</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Hakkımızda</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Doktorlar</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Yasal</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors">Gizlilik Politikası</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">KVKK Aydınlatma</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Kullanım Şartları</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Bize Ulaşın</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-primary"></i>
+                            <span>Teknopark İstanbul, <br>Pendik/İstanbul</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-primary"></i>
+                            <span>+90 (212) 123 45 67</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-primary"></i>
+                            <span>info@healthchain.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2025 HealthChain. Tüm hakları saklıdır.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true, // Animasyon sadece bir kere çalışsın
+            offset: 100 // Tetiklenme mesafesi
+        });
+    </script>
+</body>
+</html>

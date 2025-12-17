@@ -1,39 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş Yap - HealthChain</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f0f2f5; display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .login-card { width: 100%; max-width: 400px; padding: 20px; border-radius: 10px; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Poppins', 'sans-serif'] }, colors: { primary: '#2563EB' } } } }
+    </script>
 </head>
-<body>
-    <div class="card login-card shadow">
-        <div class="text-center mb-4">
-            <h3 class="text-primary">🏥 HealthChain</h3>
-            <p class="text-muted">Güvenli Hastane Sistemi</p>
+<body class="bg-gray-50 flex items-center justify-center h-screen relative overflow-hidden">
+
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <div class="bg-white/80 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md z-10 border border-white">
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-blue-500/30">
+                <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800">Doktor Girişi</h2>
+            <p class="text-gray-500 text-sm mt-2">HealthChain güvenli sistemine erişin.</p>
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                    <div class="mb-4 p-3 rounded-lg text-sm bg-red-100 text-red-700 border border-red-200">
+                        {{ message }}
+                    </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
-        <form method="POST">
-            <div class="mb-3">
-                <label>Kullanıcı Adı</label>
-                <input type="text" name="username" class="form-control" required>
+        <form method="POST" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Kullanıcı Adı</label>
+                <div class="relative">
+                    <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="username" name="username" required class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="Kullanıcı adınızı giriniz">
+                </div>
             </div>
-            <div class="mb-3">
-                <label>Şifre</label>
-                <input type="password" name="password" class="form-control" required>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="password" name="password" required class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="••••••••">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center text-gray-500">
+                    <input type="checkbox" class="mr-2 rounded text-primary focus:ring-primary"> Beni Hatırla
+                </label>
+                <a href="#" class="text-primary font-semibold hover:underline">Şifremi Unuttum?</a>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-primary text-white rounded-xl font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:scale-[1.02] transition-all duration-200">
+                Güvenli Giriş Yap
+            </button>
         </form>
+
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <a href="/" class="hover:text-primary transition-colors"><i class="fa-solid fa-arrow-left mr-1"></i> Ana Sayfaya Dön</a>
+        </div>
     </div>
 </body>
 </html>

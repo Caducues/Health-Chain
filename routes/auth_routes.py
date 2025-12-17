@@ -11,36 +11,33 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         input_password = request.form['password']
-
         conn = get_db_connection()
         with conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, username, name, role_id, password_hash FROM users WHERE username = %s",
-                            (username,))
+
+                cur.execute("""
+                    SELECT u.id, u.username, u.name, u.surname, u.role_id, u.password_hash, r.name
+                    FROM users u
+                    JOIN roles r ON u.role_id = r.id
+                    WHERE u.username = %s
+                """, (username,))
                 user_data = cur.fetchone()
-        conn.close()
 
+        if conn:
+            conn.close()
         if user_data:
-            stored_password = user_data[4]
+            stored_password_hash = user_data[5]
 
-            is_valid = False
-            try:
-                if check_password_hash(stored_password, input_password):
-                    is_valid = True
-            except:
-                pass
-            if not is_valid and stored_password == input_password:
-                is_valid = True
-
-            if is_valid:
+            if check_password_hash(stored_password_hash, input_password):
                 user_obj = User(
                     id=user_data[0],
                     username=user_data[1],
                     name=user_data[2],
-                    role_id=user_data[3]
+                    surname=user_data[3],
+                    role_name=user_data[6]
                 )
                 login_user(user_obj)
-                flash('Giriş başarılı!', 'success')
+                flash(f'Hoşgeldiniz, {user_data[2]}!', 'success')
                 return redirect(url_for('main.index'))
             else:
                 flash('Hatalı şifre.', 'danger')
@@ -48,7 +45,6 @@ def login():
             flash('Kullanıcı bulunamadı.', 'danger')
 
     return render_template('login.html')
-
 
 @auth_bp.route('/logout')
 @login_required

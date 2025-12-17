@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Güvenlik Raporu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Poppins', 'sans-serif'] }, colors: { primary: '#2563EB', dark: '#1F2937' } } } }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-700 font-sans h-screen flex overflow-hidden">
+
+   <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col z-20 shadow-xl">
+        <div class="h-20 flex items-center px-8 border-b border-gray-100">
+            <i class="fa-solid fa-notes-medical text-3xl text-primary mr-3"></i>
+            <span class="text-2xl font-bold tracking-tight text-dark">Health<span class="text-primary">Chain</span></span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Genel</p>
+
+            <a href="{{ url_for('main.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-primary rounded-xl transition-all">
+                <i class="fa-solid fa-chart-pie w-5"></i> Dashboard
+            </a>
+
+            <a href="/register_patient" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-primary rounded-xl transition-all">
+                <i class="fa-solid fa-user-plus w-5"></i> Hasta Ekle
+            </a>
+
+            <a href="/add_record" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-primary rounded-xl transition-all">
+                <i class="fa-solid fa-file-medical w-5"></i> Muayene Ekle
+            </a>
+
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-8 mb-2">Güvenlik</p>
+
+            <a href="/verify" class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-blue-500/30 transition-all">
+                <i class="fa-solid fa-shield-halved w-5"></i> Sistemi Denetle
+            </a>
+
+            {% if current_user.role_name == 'Admin' %}
+            <a href="{{ url_for('admin.add_doctor') }}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-purple-50 hover:text-purple-600 rounded-xl transition-all">
+                <i class="fa-solid fa-user-doctor w-5"></i> Doktor Ekle
+            </a>
+            {% endif %}
+        </nav>
+
+        <div class="p-4 border-t border-gray-100">
+            <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-all font-medium">
+                <i class="fa-solid fa-right-from-bracket w-5"></i> Çıkış Yap
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-gray-50 p-8">
+
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark">Blockchain Güvenlik Denetimi</h1>
+                <p class="text-gray-500 text-sm">Sistemdeki tüm bloklar kriptografik olarak doğrulanıyor.</p>
+            </div>
+
+            {% if patients_valid and records_valid %}
+                <div class="px-6 py-3 bg-green-100 text-green-700 rounded-xl font-bold flex items-center gap-2 animate-pulse">
+                    <i class="fa-solid fa-shield-check text-xl"></i> SİSTEM GÜVENLİ
+                </div>
+            {% else %}
+                <div class="px-6 py-3 bg-red-100 text-red-700 rounded-xl font-bold flex items-center gap-2 animate-pulse">
+                    <i class="fa-solid fa-triangle-exclamation text-xl"></i> GÜVENLİK İHLALİ
+                </div>
+            {% endif %}
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b border-gray-100 font-bold text-gray-600 flex justify-between">
+                    <span>👤 Hasta Kimlik Zinciri</span>
+                    {% if not patients_valid %}<span class="text-red-500">BOZULDU</span>{% endif %}
+                </div>
+                <div class="p-4 space-y-2 max-h-[500px] overflow-y-auto">
+                    {% for p in patient_results %}
+                    <div class="flex items-center justify-between p-3 rounded-lg border {{ 'bg-red-50 border-red-200' if not p.valid else 'bg-white border-gray-100' }}">
+                        <div>
+                            <div class="font-bold text-sm text-dark">#{{ p.id }} {{ p.name }}</div>
+                            {% if not p.valid %}
+                            <div class="text-xs text-red-600 mt-1 font-semibold">{{ p.error }}</div>
+                            {% else %}
+                            <div class="text-xs text-gray-400 font-mono">Hash: Doğrulandı</div>
+                            {% endif %}
+                        </div>
+                        {% if p.valid %}
+                            <i class="fa-solid fa-check-circle text-green-500 text-lg"></i>
+                        {% else %}
+                            <i class="fa-solid fa-circle-xmark text-red-500 text-lg"></i>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b border-gray-100 font-bold text-gray-600 flex justify-between">
+                    <span>📋 Muayene Kayıt Zinciri</span>
+                    {% if not records_valid %}<span class="text-red-500">BOZULDU</span>{% endif %}
+                </div>
+                <div class="p-4 space-y-2 max-h-[500px] overflow-y-auto">
+                    {% for r in record_results %}
+                    <div class="flex items-center justify-between p-3 rounded-lg border {{ 'bg-red-50 border-red-200' if not r.valid else 'bg-white border-gray-100' }}">
+                        <div>
+                            <div class="font-bold text-sm text-dark">Blok #{{ r.id }} - {{ r.patient }}</div>
+                            {% if not r.valid %}
+                            <div class="text-xs text-red-600 mt-1 font-semibold">{{ r.error }}</div>
+                            {% else %}
+                            <div class="text-xs text-gray-400 font-mono">Hash: Doğrulandı</div>
+                            {% endif %}
+                        </div>
+                        {% if r.valid %}
+                            <i class="fa-solid fa-check-circle text-green-500 text-lg"></i>
+                        {% else %}
+                            <i class="fa-solid fa-circle-xmark text-red-500 text-lg"></i>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>

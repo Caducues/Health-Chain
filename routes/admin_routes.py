@@ -1,9 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
 from db_config import get_db_connection
+from flask_login import login_required
+from decorators import admin_required
+
 admin_bp = Blueprint('admin', __name__)
 
 @admin_bp.route('/add_doctor', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def add_doctor():
     conn = get_db_connection()
     departments = []
