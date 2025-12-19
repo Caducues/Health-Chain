@@ -72,8 +72,7 @@
             <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
                 <a href="#" class="hover:text-primary transition-colors">Ana Sayfa</a>
                 <a href="#hizmetler" class="hover:text-primary transition-colors">Hizmetler</a>
-                <a href="#doktorlar" class="hover:text-primary transition-colors">Doktorlarımız</a>
-                <a href="/verify" class="hover:text-primary transition-colors">Sistemi Denetle</a>
+                <a href="{{ url_for('auth.login') }}" class="hover:text-primary transition-colors">Doktor Girişi</a>
             </div>
 
             <div class="hidden md:flex items-center gap-4">
@@ -110,14 +109,7 @@
                         Verileriniz değiştirilemez blockchain zincirinde güvende. Yapay zeka destekli teşhis ve şeffaf muayene süreçleri ile tanışın.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="/register_patient" class="px-8 py-4 bg-primary text-white rounded-xl shadow-xl shadow-blue-500/30 font-semibold hover:bg-secondary transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-user-plus"></i> Hasta Kaydı Oluştur
-                        </a>
-                        <a href="#hizmetler" class="px-8 py-4 bg-white text-dark border border-gray-200 rounded-xl shadow-lg hover:shadow-xl font-semibold transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-magnifying-glass"></i> Doktor Bul
-                        </a>
-                    </div>
+
 
                     <div class="mt-12 flex items-center justify-center lg:justify-start gap-8 text-dark">
                         <div>
@@ -139,7 +131,6 @@
 
                 <div class="lg:w-1/2 relative" data-aos="fade-left" data-aos-duration="1200">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-                        <img src="https://images.unsplash.com/photo-1631217868264-e5b9099a583d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Doktorlar" class="w-full h-auto transform hover:scale-105 transition-transform duration-700">
 
                         <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
                             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
@@ -163,10 +154,9 @@
                     <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6">
                         <i class="fa-solid fa-calendar-check"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Randevu Al</h3>
-                    <p class="text-gray-500 mb-4">Uzman doktorlarımızdan size en uygun zamanda randevu oluşturun.</p>
-                    <a href="#" class="text-primary font-semibold hover:gap-2 transition-all flex items-center gap-1">Hemen Başla <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                    <h3 class="text-xl font-bold mb-3">Randevu</h3>
+                    <p class="text-gray-500 mb-4">Uzman doktorlarımızdan size en uygun zamanda randevular.</p>
+                                    </div>
 
                 <div class="bg-primary p-8 rounded-2xl shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-white transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl mb-6">
@@ -174,17 +164,15 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3">Tahlil Sonuçları</h3>
                     <p class="text-blue-100 mb-4">Blockchain güvencesiyle saklanan laboratuvar sonuçlarınıza anında erişin.</p>
-                    <a href="/login" class="text-white font-semibold hover:gap-2 transition-all flex items-center gap-1">Giriş Yap <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                              </div>
 
                 <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
                         <i class="fa-solid fa-user-doctor"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Doktor Bul</h3>
-                    <p class="text-gray-500 mb-4">Hastanemizde görev yapan uzman doktorları branşlarına göre listeleyin.</p>
-                    <a href="#" class="text-green-600 font-semibold hover:gap-2 transition-all flex items-center gap-1">Listele <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                    <h3 class="text-xl font-bold mb-3">Doktor</h3>
+                    <p class="text-gray-500 mb-4">Hastanemizde görev yapan uzman doktorlar.</p>
+                              </div>
             </div>
         </div>
     </section>
